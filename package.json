@@ -12,7 +12,7 @@
     "start": "yarn typeorm:run && nest start",
     "start:dev": "set NODE_ENV=development && nest start --watch",
     "start:debug": "set NODE_ENV=development && nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest --runInBand",
     "test:watch": "set NODE_ENV=test && jest --watch",
@@ -24,7 +24,7 @@
     "typeorm:run": "yarn build && yarn typeorm migration:run"
   },
   "engines": {
-    "node": "14.x",
+    "node": "16.x",
     "npm": "6.x"
   },
   "dependencies": {
