@@ -17,11 +17,6 @@ const connection =
     : {
         url: process.env.DATABASE_URL,
       };
-console.log(
-  process.env.NODE_ENV === 'development'
-    ? console.log(process.env.POSTGRES_DB)
-    : console.log(process.env.DATABASE_URL),
-);
 const typeOrmConfig: TypeOrmModuleOptions = {
   ...connection,
   type: 'postgres',

@@ -31,7 +31,6 @@ describe('AppController (e2e)', () => {
     const res = await request(app.getHttpServer()).get(
       `/movie?page=1&limit=10`,
     );
-    console.log(res);
     expect(res.status).toEqual(HttpStatus.OK);
   });
 

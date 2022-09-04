@@ -40,32 +40,3 @@ export function configureSwagger(app: INestApplication): void {
     swaggerOptions: { docExpansion: 'none', persistAuthorization: true },
   });
 }
-
-/**
- * Generates obj for the app's CORS configurations
- * @returns CORS configurations
- */
-export function corsConfig(): CorsOptions {
-  return {
-    allowedHeaders:
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization, Set-Cookie, Cookies',
-    credentials: true,
-    origin: (origin, callback) => {
-      const appConfigs = runtimeConfig();
-      const whitelist = appConfigs.allowedOrigins || [];
-      const canAllowUndefinedOrigin =
-        origin === undefined && appConfigs.env !== 'production';
-
-      if (whitelist.indexOf(origin) !== -1 || canAllowUndefinedOrigin) {
-        callback(null, true);
-      } else {
-        callback(
-          new UnauthorizedException(
-            `Not allowed by CORS for origin:${origin} on ${appConfigs.env}`,
-          ),
-        );
-      }
-    },
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  };
-}
