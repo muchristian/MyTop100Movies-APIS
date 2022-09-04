@@ -11,8 +11,6 @@ async function bootstrap() {
   const port = configService.get('port');
   const env = configService.get('env');
 
-  app.use(helmet());
-  app.setGlobalPrefix('api/v1');
   app.enableCors(corsConfig());
   app.useGlobalPipes(
     new ValidationPipe({
