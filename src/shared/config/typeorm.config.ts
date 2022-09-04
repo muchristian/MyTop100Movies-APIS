@@ -5,12 +5,25 @@ import { isRunningInDevelopment } from '../utils/env.util';
 console.log(process.env.POSTGRES_HOST);
 console.log(process.env.POSTGRES_USER);
 
+const connection =
+  process.env.NODE_ENV === 'development'
+    ? {
+        host: process.env.POSTGRES_HOST,
+        port: parseInt(process.env.POSTGRES_PORT || ''),
+        username: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
+        database: process.env.POSTGRES_DB,
+      }
+    : {
+        url: process.env.DATABASE_URL,
+      };
+console.log(
+  process.env.NODE_ENV === 'development'
+    ? console.log(process.env.POSTGRES_DB)
+    : console.log(process.env.DATABASE_URL),
+);
 const typeOrmConfig: TypeOrmModuleOptions = {
-  host: process.env.POSTGRES_HOST,
-  port: parseInt(process.env.POSTGRES_PORT || ''),
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
+  ...connection,
   type: 'postgres',
   synchronize: isRunningInDevelopment(),
   dropSchema: isRunningInDevelopment(),
@@ -22,10 +35,8 @@ const typeOrmConfig: TypeOrmModuleOptions = {
   migrations: ['dist/db/migrations/*{.ts,.js}'],
   cli: { migrationsDir: 'src/db/migrations' },
   migrationsRun: !isRunningInDevelopment(),
-  dialectOptions: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
+  ssl: {
+    rejectUnauthorized: false,
   },
 };
 
