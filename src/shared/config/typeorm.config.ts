@@ -13,6 +13,12 @@ const connection =
       }
     : {
         url: process.env.DATABASE_URL,
+        dialectOptions: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+        },
       };
 
 const typeOrmConfig: TypeOrmModuleOptions = {
