@@ -21,7 +21,6 @@ const typeOrmConfig: TypeOrmModuleOptions = {
   migrationsRun: !isRunningInDevelopment(),
   dialectOptions: {
     ssl: {
-      require: true,
       rejectUnauthorized: false,
     },
   },
