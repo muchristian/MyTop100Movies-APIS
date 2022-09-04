@@ -13,10 +13,10 @@ const typeOrmConfig: TypeOrmModuleOptions = {
   dropSchema: isRunningInDevelopment(),
   keepConnectionAlive: true,
   logging: isRunningInDevelopment(),
-  entities: ['dist/src/**/*.entity.js'],
+  entities: ['dist/**/*.entity.js'],
   autoLoadEntities: false,
   migrationsTableName: 'migrations',
-  migrations: ['dist/src/db/migrations/*{.ts,.js}'],
+  migrations: ['dist/db/migrations/*{.ts,.js}'],
   cli: { migrationsDir: 'src/db/migrations' },
   migrationsRun: !isRunningInDevelopment(),
 };

@@ -26,7 +26,6 @@ export class MovieService {
     options: IPagination,
     { sort, search }: FilterOptions,
   ): Promise<any> {
-    console.log(search);
     const queryBuilder = this.movieRepo.createQueryBuilder('movie');
     if (search) {
       queryBuilder.andWhere('movie.title = :title', {
