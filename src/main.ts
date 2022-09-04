@@ -21,7 +21,7 @@ async function bootstrap() {
     }),
   );
 
-  if (['development'].includes(env)) {
+  if (['development', 'production'].includes(env)) {
     configureSwagger(app);
   }
   await app.listen(port || 3000);
