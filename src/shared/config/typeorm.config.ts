@@ -2,9 +2,6 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import 'dotenv/config';
 import { isRunningInDevelopment } from '../utils/env.util';
 
-console.log(process.env.POSTGRES_HOST);
-console.log(process.env.POSTGRES_USER);
-
 const connection =
   process.env.NODE_ENV === 'development'
     ? {
